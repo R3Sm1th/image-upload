@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: "Post was successfully destroyed.", status: :see_other
+    redirect_to root_path, notice: "Post was successfully destroyed.", status: :see_other
   end
 
   private
