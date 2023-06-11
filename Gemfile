@@ -6,7 +6,7 @@ gem "simple_form"
 gem 'pdf-reader'
 gem "prawn", github: "prawnpdf/prawn"
 gem "prawn-rails"
-gem "matrix", "~> 0.4"
+gem 'matrix'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.5"
 
