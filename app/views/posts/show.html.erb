@@ -1,6 +1,18 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @post %>
+<% @post.photos.each do |photo| %>
+  <% (1..10).each do |n|%>
+    <%= cl_image_tag photo.key, :transformation=>[{:height=>400, :crop=>"scale"},{:fetch_format=>:jpg}, {:page=>n}]%>
+  <% end %><%# url = cl_image_tag photo.key %>
+  <%# require 'open-uri' %>
+  <%# regex = /src="(.*?)"/ %>
+  <%# match = regex.match(url) %>
+  <%# image_url = match[1] if match %>
+  <%# reader = PDF::Reader.new(open(image_url)) %>
+  <%# reader.pages.each do |page| %>
+    <%#= puts page.text %>
+<% end %>
 
 <div>
   <%= link_to "Edit this post", edit_post_path(@post) %> |

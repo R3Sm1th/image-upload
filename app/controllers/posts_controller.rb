@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
-
+  require 'pdf-reader'
   # GET /posts
   def index
     @posts = Post.all
@@ -8,6 +8,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
+
   end
 
   # GET /posts/new
@@ -53,6 +54,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, photos: [])
     end
 end
