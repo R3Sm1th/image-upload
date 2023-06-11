@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy pdf]
   require 'pdf-reader'
+
   # GET /posts
   def index
     @posts = Post.all
@@ -44,6 +45,19 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to root_path, notice: "Post was successfully destroyed.", status: :see_other
+  end
+
+  def pdf
+    pdf = Prawn::Document.new
+    pdf.text @post.title, size: 20, style: :bold
+    pdf.text @post.body
+    thumbnail = StringIO.open(@post.photos[0].download)
+    pdf.image thumbnail, fit: [500, 500]
+
+    send_data(pdf.render,
+              filename: "#{@post.title}.pdf",
+              type: 'application/pdf',
+              disposition: 'inline')
   end
 
   private
